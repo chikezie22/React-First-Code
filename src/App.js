@@ -100,7 +100,7 @@ function Menu() {
 
       {numPizzas > 0 ? (
         <>
-          {/* A react fragment */}
+          {/* A react fragment <> </> */}
           <p>
             Authentic Italian cuisine. 6 creative dishes to choose from. All
             from our stone, all organic, all delicious.
