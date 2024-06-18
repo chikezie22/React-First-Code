@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import "./index.css";
 import MyComponent from "./MyComponent"; // Import your new component
 
 const pizzaData = [
@@ -73,27 +74,81 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <Pizza />
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>Hello World</h1>
-        <MyComponent advice={advice} getAdvice={getAdvice} />
-        <p>Advice count: {count}</p>
-      </header>
-      <Pizza />
+    <div className="container">
+      <div className="App">
+        <header className="App-header">
+          <Header />
+          <img src={logo} className="App-logo" alt="logo" />
+          <h1>Hello World</h1>
+          <MyComponent advice={advice} getAdvice={getAdvice} />
+          <p>Advice count: {count}</p>
+        </header>
+        <Menu />
+
+        <Footer />
+      </div>
+    </div>
+  );
+}
+function Menu() {
+  return (
+    <main className="menu">
+      <h2 style={{ marginTop: "5px" }}>Our menu</h2>
+      <Pizza
+        name="Pizza Prosciutto"
+        ingredients="Tomato, mozarella, ham, aragula, and burrata cheese"
+        photoName="../pizzas/prosciutto.jpg"
+        price="10"
+      />
+
+      <Pizza
+        name="Pizza Funghi"
+        ingredients="Tomato, mushrooms"
+        price="12"
+        photoName="pizzas/funghi.jpg"
+      />
+    </main>
+  );
+}
+
+function Pizza(props) {
+  console.log(props);
+  return (
+    <div className="pizza">
+      <img src={props.photoName} alt={props.name} />
+      <div>
+        <h3>{props.name}</h3>
+        <p>{props.ingredients}</p>
+        <span>{Number(props.price) + 3}</span>
+      </div>
     </div>
   );
 }
 
-function Pizza() {
+function Header() {
+  // const style = { color: "red", textTransform: "uppercase" }
+  const style = {};
   return (
-    <div>
-      <img src="pizzas/prosciutto.jpg" alt="prosciutto image" />
-      <h2>Pizza Prosciutto</h2>
-      <p>Tomato, mozarella, ham, aragula, and burrata cheese</p>
-    </div>
+    <header className="header">
+      <h1 style={style}> Fast React Pizza Co.</h1>
+    </header>
   );
+}
+
+function Footer() {
+  const hour = new Date().getHours();
+  console.log(hour);
+  const openHour = 12;
+  const closeHour = 22;
+  if (hour >= openHour && hour <= closeHour) alert("We are currently open!");
+  else alert("We are closed ");
+  return (
+    <footer className="footer">
+      {new Date().toLocaleTimeString()}. We're are currently open
+    </footer>
+  );
+
+  // return React.createElement("footer", null, "We are currently open!");
 }
 
 export default App;
