@@ -63,7 +63,7 @@ function App() {
       const data = await res.json();
       setAdvice(data.slip.advice);
       setCount((prevCount) => prevCount + 1);
-      console.log(advice);
+      // console.log(advice);
     } catch (error) {
       console.error("Error fetching advice:", error);
     }
@@ -160,7 +160,7 @@ function Header() {
 
 function Footer() {
   const hour = new Date().getHours();
-  console.log(hour);
+  // console.log(hour);
   const openHour = 12;
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
